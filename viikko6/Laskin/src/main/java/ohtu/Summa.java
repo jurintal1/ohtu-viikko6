@@ -10,6 +10,7 @@ public class Summa implements Komento {
     private JTextField tuloskentta;
     private JTextField syotekentta;
     private int syote;
+    private int vanhaTulos;
     
     
     public Summa(Sovelluslogiikka sovellus, JTextField tuloskentta, JTextField syotekentta) {
@@ -21,7 +22,8 @@ public class Summa implements Komento {
     
 
     @Override
-    public void suorita() {        
+    public void suorita() {
+        this.vanhaTulos = sovellus.tulos();
         try {
             syote = Integer.parseInt(syotekentta.getText());
         } catch (Exception e) {
@@ -36,7 +38,9 @@ public class Summa implements Komento {
 
     @Override
     public void peru() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sovellus.setTulos(vanhaTulos);
+        tuloskentta.setText("" +vanhaTulos);
+        
     }
 
 }
